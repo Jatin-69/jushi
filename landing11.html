@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReWear - Swap Your Style</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f2fa;
+    }
+
+    /* Header */
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle div {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        margin-top: 10px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin: 5px;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                  url('https://images.unsplash.com/photo-1520975698519-59fbbd42ec98') center/cover no-repeat;
+      background-size: cover;
+      min-height: 70vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 20px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .hero .btn {
+      padding: 14px 28px;
+      background: #e67e22;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      margin: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .hero .btn:hover {
+      background: #d35400;
+    }
+
+    /* Shopping Visual Section */
+    .shopping-visual-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #eee6ff, #fdfbff);
+    }
+
+    .mockup-box {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+
+    .mockup-image {
+      text-align: center;
+    }
+
+    .mockup-image img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 15px;
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 0s;
+    }
+
+    .extra-images {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .extra-images img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .extra-images img:nth-child(1) { animation-delay: 0.5s; }
+    .extra-images img:nth-child(2) { animation-delay: 1s; }
+    .extra-images img:nth-child(3) { animation-delay: 1.5s; }
+
+    .mockup-text h2 {
+      font-size: 36px;
+      color: #6C63FF;
+      margin-bottom: 20px;
+    }
+
+    .mockup-text p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      padding: 14px 30px;
+      background: #6C63FF;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+    }
+
+    .btn:hover {
+      background: #4e48d4;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(108, 99, 255, 0.5);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* Sections */
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section h3 {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      max-width: 250px;
+    }
+
+    /* Featured Items */
+    .featured-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .item-card {
+      width: 220px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      background-color: white;
+      transition: 0.3s;
+    }
+
+    .item-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .item-card img {
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      margin: 0 auto;
+      padding: 10px;
+    }
+
+    .item-card .content {
+      padding: 10px;
+    }
+
+    .item-card h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    /* Why Choose */
+    .why-choose {
+      background: #f0f0ff;
+      padding: 50px 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .footer a {
+      color: #f39c12;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    /* Responsive Fonts */
+    @media (max-width: 480px) {
+      .hero h2 { font-size: 28px; }
+      .hero p { font-size: 16px; }
+      .mockup-text h2 { font-size: 24px; }
+      .mockup-text p { font-size: 16px; }
+      .step h4 { font-size: 18px; }
+      .step p { font-size: 14px; }
+      .item-card { width: 150px; }
+      .item-card img { max-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>ReWear</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+    <nav id="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Add Item</a>
+      <a href="#">Browse</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Swap Your Style, Save the Planet 🌍</h2>
+    <p>Join ReWear to exchange clothes sustainably. Fashion that feels good for you and for the Earth.</p>
+    <a href="#" class="btn">Get Started</a>
+    <a href="#" class="btn">Browse Items</a>
+  </section>
+
+  <!-- Shopping Visual -->
+  <section class="shopping-visual-section" aria-label="ReWear Shopping Visual">
+    <div class="mockup-box">
+      <div class="mockup-image">
+        <img src="https://unblast.com/wp-content/uploads/2018/08/1.jpg" alt="Eco-friendly shopping mockup">
+        <div class="extra-images">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl9PcPyuNWfF8A92yBF3fCpEne_nGSU4YWcA&s" alt="Vintage denim collection">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f" alt="Cozy t-shirts">
+          <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246" alt="Sustainable clothing">
+        </div>
+      </div>
+      <div class="mockup-text">
+        <h2>🌿 Explore & Swap</h2>
+        <p>Discover items listed by eco-conscious users and swap with ease. Whether it’s <strong>vintage denim</strong>, <strong>cozy tees</strong>, or <strong>unique finds</strong>, ReWear helps you refresh your wardrobe sustainably 🌎.</p>
+        <a href="#" class="btn" aria-label="Browse Items on ReWear">✨ Browse Items</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps -->
+  <section class="section">
+    <h3>How It Works</h3>
+    <div class="steps">
+      <div class="step">
+        <h4>1. Sign Up</h4>
+        <p>Create your free account and set up your profile.</p>
+      </div>
+      <div class="step">
+        <h4>2. List Items</h4>
+        <p>Upload photos of your unused clothes with details.</p>
+      </div>
+      <div class="step">
+        <h4>3. Swap & Earn</h4>
+        <p>Get points or direct swap requests. Simple & sustainable!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Items -->
+  <section class="section" style="background: #f9f9f9;">
+    <h3>Featured Items</h3>
+    <div class="featured-items">
+      <div class="item-card">
+        <img src="https://img.icons8.com/color/344/t-shirt.png" alt="Cartoon T-shirt" />
+        <div class="content">
+          <h4>Cool T-Shirt</h4>
+          <p>Swap for 10 points</p>
+        </div>
+      </div>
+      <div class="item-card">
+        <img src="https://img.icons8.com/color/344/jeans.png" alt="Cartoon Jeans" />
+        <div class="content">
+          <h4>Vintage Jeans</h4>
+          <p>Swap for 15 points</p>
+        </div>
+      </div>
+      <div class="item-card">
+        <img src="https://img.icons8.com/color/344/backpack.png" alt="Cartoon Backpack" />
+        <div class="content">
+          <h4>Trendy Backpack</h4>
+          <p>Swap for 20 points</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose ReWear -->
+  <section class="why-choose section">
+    <h3>Why Choose ReWear?</h3>
+    <p>🌍 Save the planet | ♻️ Promote reusability | 🧥 Refresh your wardrobe without spending</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 ReWear | <a href="landing6.html">Privacy Policy</a> | <a href="landing12.html">Contact</a></p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("nav-links").classList.toggle("active");
+    }
+  </script>
+
+</body>
+</html>
